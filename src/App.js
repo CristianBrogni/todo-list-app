@@ -5,7 +5,7 @@ import { useState } from "react";
 function App() {
 	const [newItem, setNewItem] = useState("");
 	const [updateList, setUpdateList] = useState([]);
-	const [erro, setErro] = useState("");
+	const [noInputError, setNoInputError] = useState("");
 
 	function addItem() {
 		if (newItem) {
@@ -19,9 +19,9 @@ function App() {
 			};
 			setUpdateList([...updateList, item]);
 			setNewItem("");
-			setErro("");
+			setNoInputError("");
 		} else {
-			setErro("Tarefa em Branco");
+			setNoInputError("Tarefa em Branco");
 		}
 	}
 
@@ -56,14 +56,14 @@ function App() {
 	return (
 		<div className="App">
 			<div className="todoApp">
-				<p style={{ color: "red" }}>{erro}</p>
+				<p style={{ color: "red" }}>{noInputError}</p>
 				<h1>To Do List App</h1>
 				<div className="todoApp-input">
 					<input
 						type="text"
 						onChange={handleChange}
 						value={newItem}
-						placeholder="Digite a Tarefa"
+						placeholder="Write your task"
 					/>
 					<button onClick={addItem}>Add Item</button>
 				</div>
