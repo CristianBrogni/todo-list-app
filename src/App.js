@@ -1,5 +1,6 @@
 import "./App.css";
 import Task from "./Task";
+import Header from "./Header";
 import { useState } from "react";
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
 			setNoInputError("");
 			localStorage.setItem("tasks", JSON.stringify(updatedList));
 		} else {
-			setNoInputError("Tarefa em Branco");
+			setNoInputError("Input Field is Empty");
 		}
 	}
 
@@ -60,19 +61,12 @@ function App() {
 
 	return (
 		<div className="App">
-			<div className="todoApp">
-				<p style={{ color: "red" }}>{noInputError}</p>
-				<h1>To Do List App</h1>
-				<div className="todoApp-input">
-					<input
-						type="text"
-						onChange={handleChange}
-						value={newItem}
-						placeholder="Write your task"
-					/>
-					<button onClick={addItem}>Add Item</button>
-				</div>
-			</div>
+			<Header
+				noInputError={noInputError}
+				handleChange={handleChange}
+				newItem={newItem}
+				addItem={addItem}
+			/>
 			<div className="todoApp-list">
 				{updateList.map((item) => {
 					return (
