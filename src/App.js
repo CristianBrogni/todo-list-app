@@ -17,35 +17,38 @@ function App() {
 				itemName: newItem,
 				checked: false,
 			};
-			setUpdateList([...updateList, item]);
+			const updatedList = [...updateList, item];
+			setUpdateList(updatedList);
 			setNewItem("");
 			setNoInputError("");
+			localStorage.setItem("tasks", JSON.stringify(updatedList));
 		} else {
 			setNoInputError("Tarefa em Branco");
 		}
 	}
 
 	function deleteItem(id) {
-		const newUpdateList = updateList.filter((item) => {
+		const updatedList = updateList.filter((item) => {
 			if (item.id === id) {
 				return false;
 			} else {
 				return true;
 			}
 		});
-		setUpdateList(newUpdateList);
+		setUpdateList(updatedList);
+		localStorage.setItem("tasks", JSON.stringify(updatedList));
 	}
 
 	function checkItem(id) {
-		setUpdateList(
-			updateList.map((item) => {
-				if (item.id === id) {
-					return { ...item, checked: !item.checked };
-				} else {
-					return item;
-				}
-			})
-		);
+		const updatedList = updateList.map((item) => {
+			if (item.id === id) {
+				return { ...item, checked: !item.checked };
+			} else {
+				return item;
+			}
+		});
+		setUpdateList(updatedList);
+		localStorage.setItem("tasks", JSON.stringify(updatedList));
 	}
 
 	function handleChange(e) {
