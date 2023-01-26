@@ -4,7 +4,9 @@ import { useState } from "react";
 
 function App() {
 	const [newItem, setNewItem] = useState("");
-	const [updateList, setUpdateList] = useState([]);
+	const [updateList, setUpdateList] = useState(
+		JSON.parse(localStorage.getItem("tasks"))
+	);
 	const [noInputError, setNoInputError] = useState("");
 
 	function addItem() {
